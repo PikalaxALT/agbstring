@@ -1,0 +1,15 @@
+String1
+これはテスト文字列です。
+This is a test string.
+Ceci est une chaîne de test.
+Esta es una cadena de prueba.
+Dies ist eine Testzeichenfolge.
+Questa è una stringa di prova.
+
+String2
+FIVEつは英語で五つを意味します。 神様、何回言わなければならないのですか？
+CINCO MEANS FIVE IN SPANISH GOD HOW MANY TIMES DO I HAVE TO SAY THIS
+Five signifie cinq en anglais. Dieu, combien de fois dois-je dire cela?
+Five significa cinco en inglés. Dios, ¿cuántas veces tengo que decir esto?
+Five bedeutet fünf auf Englisch. Gott, wie oft muss ich das sagen?
+Five significa cinque in inglese. Dio, quante volte devo dire questo?
