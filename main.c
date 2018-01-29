@@ -22,7 +22,7 @@
 #include <errno.h>
 #include <stdnoreturn.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 
 #define NELEM(x) ((sizeof(x)) / (sizeof(*(x))))
 
@@ -50,7 +50,7 @@ int main(int argc, char * argv[]) {
     if (errno) {
         fclose(stringfile);
         fclose(asmfile);
-        usage();
+        usage(); // noreturn
     }
 
     int language = 0;
@@ -60,7 +60,7 @@ int main(int argc, char * argv[]) {
     }
     if (language == NELEM(languages)) {
         fprintf(stderr, "Unrecognized language: %s\n", argv[3]);
-        usage();
+        usage(); // noreturn
     }
 
     char *line = NULL;
@@ -72,17 +72,16 @@ int main(int argc, char * argv[]) {
 
     char *pos;
     while (getline(&line, &line_len, stringfile) != -1) {
-        if (!*line) continue;
-        if ((pos=strchr(line, '\n')) != NULL)
+        if (!*line || *line == '\n')
+            continue;
+        if ((pos = strchr(line, '\n')) != NULL)
             *pos = '\0';
         fprintf(asmfile, "%s::\n\t.string \"", line);
         for (int i = 1; i < NELEM(languages) && getline(&line, &line_len, stringfile) != -1; i++) {
-            if (*line == '\n') break;
-            if ((pos=strchr(line, '\n')) != NULL)
+            if ((pos = strchr(line, '\n')) != NULL)
                 *pos = '\0';
-            if (i == language) {
+            if (i == language)
                 fprintf(asmfile, "%s", line);
-            }
         }
         fprintf(asmfile, "$\"\n\n");
     }
